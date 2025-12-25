@@ -6,8 +6,8 @@ Dự án Mini Game giữa kỳ môn Lập trình mạng. Ứng dụng mô hình 
 
 ## 👥 Thành viên nhóm
 1. **Nguyễn Phi Long** - Leader: Phát triển Server và Quản lý kết nối.
-2. **Chung Tiểu Phi** - Developer: Xử lý Logic trò chơi & Thuật toán.
-3. **Lê Minh Đức** - Developer: Xây dựng giao diện Client & Xử lý sự kiện.
+2. **Lê Minh Đức** - Developer: Xử lý Logic trò chơi & Thuật toán.
+3. **Chung Tiểu Phi** - Developer: Xây dựng giao diện Client & Xử lý sự kiện.
 
 ## 🛠 Công nghệ sử dụng
 - **Ngôn ngữ:** Python 3.x
