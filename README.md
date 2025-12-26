@@ -10,14 +10,14 @@ Dự án Mini Game giữa kỳ môn Lập trình mạng. Ứng dụng mô hình 
 3. **Chung Tiểu Phi** - Developer: Xây dựng giao diện Client & Xử lý sự kiện.
 
 ## Cấu trúc thư mục
-Mini-game/ <br>
-├── server/<br>
-│   └── server.py           # Xử lý kết nối, luồng và trọng tài<br>
-├── client/<br>
-│   └── client.py           # Giao diện người dùng (UI) và nhận input<br>
-├── core/<br>
-│   └── hanoi_logic.py      # Thuật toán tháp Hà Nội (Dùng chung cho cả 2 bên)<br>
-└── README.md               # Hướng dẫn dự án
+- Mini-game/
+- ├── server/
+- │   └── server.py           # Xử lý kết nối, luồng và trọng tài
+- ├── client/
+- │   └── client.py           # Giao diện người dùng (UI) và nhận input
+- ├── core/
+- │   └── hanoi_logic.py      # Thuật toán tháp Hà Nội (Dùng chung cho cả 2 bên)
+- └── README.md               # Hướng dẫn dự án
 
 ## 🛠 Công nghệ sử dụng
 - **Ngôn ngữ:** Python 3.x
