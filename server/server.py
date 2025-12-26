@@ -109,7 +109,7 @@ def play_race(conn, addr):
     # Nếu thoát vòng lặp -> Người này thắng
     if race_winner is None:
         race_winner = str(addr)
-        conn.send("\nBAN LA NGUOI CHIEN THANG!!! VA DA GIAI XONG TRONG {duration} GIAY!\n".encode())
+        conn.send(f"\nBAN LA NGUOI CHIEN THANG!!! VA DA GIAI XONG TRONG {duration} GIAY!\n".encode())
 
 def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
