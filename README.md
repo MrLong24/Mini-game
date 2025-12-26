@@ -13,9 +13,9 @@ Dự án Mini Game giữa kỳ môn Lập trình mạng. Ứng dụng mô hình 
 Mini-game/  
 ├── server/  
 │   └── server.py           # Xử lý kết nối, luồng và trọng tài  
-├── client/
-│   └── client.py           # Giao diện người dùng (UI) và nhận input  
-├── core/
+├── client/  
+│   └── client.py           # Giao diện người dùng (UI) và nhận input   
+├── core/  
 │   └── hanoi_logic.py      # Thuật toán tháp Hà Nội (Dùng chung cho cả 2 bên)  
 └── README.md               # Hướng dẫn dự án
 
