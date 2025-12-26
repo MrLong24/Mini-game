@@ -26,14 +26,13 @@ def start_client():
                 clear_screen()
                 print(data, flush=True)
             else:
-                # Quan trọng: Thêm flush=True ở đây
                 print(data, end="", flush=True) 
 
-            if data.strip().endswith(":"):
+            if data.strip().endswith(":") or "Nhap" in data:
                 user_input = input()
-                client.send(user_input.encode())
+                client.sendall(user_input.encode())
         except Exception as e:
-            print(f"Loi: {e}", flush=True)
+            print(f"\nMat ket noi: {e}", flush=True)
             break
 
 if __name__ == "__main__":
