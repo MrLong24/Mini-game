@@ -41,11 +41,10 @@ class HanoiGame:
             row = ""
             for t in range(3):
                 if i < len(self.towers[t]):
-                    # Vẽ đĩa (ví dụ đĩa số 3: ===3===)
                     disk_val = self.towers[t][i]
-                    row += f" {str(disk_val).center(5)} " 
+                    row += f"  [{disk_val}]  " 
                 else:
-                    row += "   |   " # Cọc trống
+                    row += "   |   " 
             res += row + "\n"
         
         res += "  COT 0    COT 1    COT 2  \n"
