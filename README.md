@@ -9,6 +9,16 @@ Dự án Mini Game giữa kỳ môn Lập trình mạng. Ứng dụng mô hình 
 2. **Lê Minh Đức** - Developer: Xử lý Logic trò chơi & Thuật toán.
 3. **Chung Tiểu Phi** - Developer: Xây dựng giao diện Client & Xử lý sự kiện.
 
+## Cấu trúc thư mục
+Mini-game/
+├── server/
+│   └── server.py           # Xử lý kết nối, luồng và trọng tài
+├── client/
+│   └── client.py           # Giao diện người dùng (UI) và nhận input
+├── core/
+│   └── hanoi_logic.py      # Thuật toán tháp Hà Nội (Dùng chung cho cả 2 bên)
+└── README.md               # Hướng dẫn dự án
+
 ## 🛠 Công nghệ sử dụng
 - **Ngôn ngữ:** Python 3.x
 - **Thư viện chính:** - `socket`: Truyền tải dữ liệu TCP.
@@ -26,3 +36,17 @@ Dự án Mini Game giữa kỳ môn Lập trình mạng. Ứng dụng mô hình 
 1. **Khởi động Server:**
    ```bash
    python server/server.py
+   ```
+  - Mở 1 terminal mới và gõ lệnh phía dưới để chơi:
+    ```bash
+       python client/client.py
+2. **Cách xử lý khi lỡ tắt terminal mà Server đang chạy:**
+  Cần phải giải phóng Port server đó.
+  - Mở Terminal và gõ lệnh sau để tìm ID của tiến trình:
+  ```bash
+  netstat -ano | findstr :5555
+  ```
+  - Kết quả sẽ hiện ra một dòng có số ở cuối (ví dụ: 1234). Đó là **PID**.
+  - Gõ lệnh sau để tắt nó (thay 1234 bằng số PID bạn thấy):
+  ```bash
+  taskkill /F /PID 1234
