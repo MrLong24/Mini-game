@@ -2,6 +2,7 @@ import socket
 import threading
 import sys
 import os
+import time
 
 # Thêm đường dẫn để import được package 'core'
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -18,7 +19,7 @@ race_winner = None      # Lưu tên người thắng cuộc
 game_active = False     # Trạng thái game đang chạy hay chưa
 
 def handle_client(conn, addr):
-    print(f"[NEW CONNECTION] {addr} connected.")
+    print(f"[NEW CONNECTION] {addr} connected.", flush=True)
     conn.send("CHAO MUNG DEN VOI GAME THAP HA NOI!\n1. Choi Don (Solo)\n2. Thi Dau (Race)\nChon che do (1/2): ".encode())
     
     try:
@@ -37,6 +38,7 @@ def handle_client(conn, addr):
 def play_solo(conn):
     conn.send("--- BAT DAU SOLO MODE ---\n".encode())
     game = HanoiGame(disks=3)
+    start_time = time.time() # Bắt đầu tính giờ
     
     while not game.is_won():
         # Gửi bàn cờ hiện tại
@@ -54,10 +56,11 @@ def play_solo(conn):
             conn.send(f"\n>>> {msg}\n".encode())
         except:
             conn.send("\n>>> Loi cu phap! Nhap lai (VD: 0 2)\n".encode())
-
+    end_time = time.time() # Kết thúc tính giờ
+    duration = round(end_time - start_time, 2)
     # Thắng
     conn.send(game.render_str().encode())
-    conn.send("\nCHUC MUNG! BAN DA GIAI THANH CONG!\n".encode())
+    conn.send(f"\nCHUC MUNG! BAN DA GIAI XONG TRONG {duration} GIAY!\n".encode())
 
 def play_race(conn, addr):
     global race_room, game_active, race_winner
@@ -70,7 +73,7 @@ def play_race(conn, addr):
     
     # Chờ đủ 2 người
     while len(race_room) < 2:
-        pass # Chờ đợi (Busy wait đơn giản cho demo)
+        time.sleep(0.5) # Chờ đợi (Busy wait đơn giản cho demo)
     
     if not game_active:
         game_active = True
@@ -79,6 +82,7 @@ def play_race(conn, addr):
     conn.send("DOI THU DA VAO! START GAME!!!\n".encode())
     
     game = HanoiGame(disks=3)
+    start_time = time.time() # Bắt đầu tính giờ
     
     while not game.is_won():
         # Kiểm tra xem có ai thắng chưa
@@ -99,11 +103,13 @@ def play_race(conn, addr):
             conn.send(f"\n>>> {msg}\n".encode())
         except:
             conn.send("\n>>> Loi cu phap!\n".encode())
+    end_time = time.time() # Kết thúc tính giờ
+    duration = round(end_time - start_time, 2)
 
     # Nếu thoát vòng lặp -> Người này thắng
     if race_winner is None:
         race_winner = str(addr)
-        conn.send("\nBAN LA NGUOI CHIEN THANG!!! VO DICH THIEN HA!\n".encode())
+        conn.send("\nBAN LA NGUOI CHIEN THANG!!! VA DA GIAI XONG TRONG {duration} GIAY!\n".encode())
 
 def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
