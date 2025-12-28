@@ -12,12 +12,12 @@ Dự án Mini Game giữa kỳ môn Lập trình mạng. Ứng dụng mô hình 
 ## Cấu trúc thư mục
 Mini-game/  
 ├── server/  
-│   └── server.py           # Xử lý kết nối, luồng và trọng tài
+│   └── server.py           # Xử lý kết nối, luồng và trọng tài  
 ├── client/  
-│   ├── client.py           # Giao diện dòng lệnh (Terminal/Console)
-│   └── client_gui.py       # Giao diện đồ họa trực quan (Pygame)
+│   ├── client.py           # Giao diện dòng lệnh (Terminal/Console)  
+│   └── client_gui.py       # Giao diện đồ họa trực quan (Pygame)  
 ├── core/  
-│   └── hanoi_logic.py      # Thuật toán tháp Hà Nội (Dùng chung cho cả 2 bên)
+│   └── hanoi_logic.py      # Thuật toán tháp Hà Nội (Dùng chung cho cả 2 bên)  
 └── README.md               # Hướng dẫn dự án
 
 ## 🛠 Công nghệ sử dụng
@@ -27,32 +27,36 @@ Mini-game/
   - `json`: Đóng gói dữ liệu trao đổi giữa Client và Server.
 
 ## ⚙️ Cài đặt & Yêu cầu
-Trước khi chạy, hãy đảm bảo máy tính đã cài Python và thư viện đồ họa:
-pip install pygame
+Trước khi chạy, hãy đảm bảo máy tính đã cài Python và thư viện đồ họa:  
+```bash
+  pip install pygame
 
 ## 🚀 Hướng dẫn Khởi chạy (Localhost)
 Bước 1: Khởi động Server
-Luôn phải chạy Server trước để mở cổng kết nối.
-python server/server.py
-Server sẽ lắng nghe tại cổng 5555.
+Luôn phải chạy Server trước để mở cổng kết nối.  
+```bash
+  python server/server.py  
+  Server sẽ lắng nghe tại cổng 5555.
 
 Bước 2: Khởi động Client (Người chơi)
 Bạn có thể mở nhiều terminal để giả lập nhiều người chơi.
 - Giao diện Đồ họa (GUI): Trải nghiệm kéo thả, chọn tầng.
+  ```bash
   python client/client_gui.py
 - Giao diện Dòng lệnh (Terminal): Dành cho máy cấu hình thấp hoặc debug.
+  ```bash
   python client/client.py
 
 ## 🌐 Hướng dẫn chơi Online (2 máy khác nhau)
 Sử dụng Radmin VPN để tạo mạng LAN ảo thi đấu giữa các máy tính khác mạng Wifi.
 1. Cài đặt: Tải Radmin VPN cho cả 2 máy (Máy Server và Máy Client).
 2. Kết nối:
-- Máy A (Server): Bấm Create Network -> Đặt tên & Mật khẩu.
-- Máy B (Client): Bấm Join Network -> Nhập tên & Mật khẩu của Máy A.
+  - Máy A (Server): Bấm Create Network -> Đặt tên & Mật khẩu.
+  - Máy B (Client): Bấm Join Network -> Nhập tên & Mật khẩu của Máy A.
 3. Lấy IP: Tại Radmin VPN của Máy A, click chuột phải vào tên máy mình -> Copy IP Address (Ví dụ: 26.155.20.10).
 4. Cấu hình Code:
-- Mở file client/client_gui.py trên Máy B.
-- Tìm dòng SERVER_IP = '127.0.0.1' và đổi thành IP vừa copy:
+  - Mở file client/client_gui.py trên Máy B.
+  - Tìm dòng SERVER_IP = '127.0.0.1' và đổi thành IP vừa copy:
   SERVER_IP = '26.155.20.10' # Thay bằng IP Radmin của máy Server
 
 ## 🕹 Quy tắc & Cách chơi
@@ -71,6 +75,8 @@ Sử dụng Radmin VPN để tạo mạng LAN ảo thi đấu giữa các máy t
 Lỗi: "Address already in use" hoặc không bật được Server
   - Nguyên nhân: Cổng 5555 chưa được giải phóng do lần chạy trước tắt không đúng cách.
   - Cách sửa (Windows): Mở Terminal và chạy lệnh:
+    ```bash
     netstat -ano | findstr :5555
+    ```bash
     taskkill /F /PID <PID_TIM_DUOC>
     (Thay <PID_TIM_DUOC> bằng số PID hiện ra ở lệnh trên).
