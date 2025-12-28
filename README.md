@@ -32,14 +32,14 @@ Trước khi chạy, hãy đảm bảo máy tính đã cài Python và thư vi�
   pip install pygame
 ```
 ## 🚀 Hướng dẫn Khởi chạy (Localhost)
-Bước 1: Khởi động Server  
+### Bước 1: Khởi động Server  
 Luôn phải chạy Server trước để mở cổng kết nối.  
 ```bash
   python server/server.py  
 ```  
   Server sẽ lắng nghe tại cổng 5555.
 
-Bước 2: Khởi động Client (Người chơi)  
+### Bước 2: Khởi động Client (Người chơi)  
 Bạn có thể mở nhiều terminal để giả lập nhiều người chơi.
 - Giao diện Đồ họa (GUI): Trải nghiệm kéo thả, chọn tầng.
   ```bash
