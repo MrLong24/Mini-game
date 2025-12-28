@@ -30,12 +30,13 @@ Mini-game/
 Trước khi chạy, hãy đảm bảo máy tính đã cài Python và thư viện đồ họa:  
 ```bash
   pip install pygame
-
+```
 ## 🚀 Hướng dẫn Khởi chạy (Localhost)
 Bước 1: Khởi động Server
 Luôn phải chạy Server trước để mở cổng kết nối.  
 ```bash
   python server/server.py  
+```  
   Server sẽ lắng nghe tại cổng 5555.
 
 Bước 2: Khởi động Client (Người chơi)
@@ -43,9 +44,11 @@ Bạn có thể mở nhiều terminal để giả lập nhiều người chơi.
 - Giao diện Đồ họa (GUI): Trải nghiệm kéo thả, chọn tầng.
   ```bash
   python client/client_gui.py
+  ```
 - Giao diện Dòng lệnh (Terminal): Dành cho máy cấu hình thấp hoặc debug.
   ```bash
   python client/client.py
+  ```
 
 ## 🌐 Hướng dẫn chơi Online (2 máy khác nhau)
 Sử dụng Radmin VPN để tạo mạng LAN ảo thi đấu giữa các máy tính khác mạng Wifi.
@@ -79,4 +82,5 @@ Lỗi: "Address already in use" hoặc không bật được Server
     netstat -ano | findstr :5555
     ```bash
     taskkill /F /PID <PID_TIM_DUOC>
+    ```
     (Thay <PID_TIM_DUOC> bằng số PID hiện ra ở lệnh trên).
