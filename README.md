@@ -59,20 +59,20 @@ Sử dụng Radmin VPN để tạo mạng LAN ảo thi đấu giữa các máy t
 3. Lấy IP: Tại Radmin VPN của Máy A, click chuột phải vào tên máy mình -> Copy IP Address (Ví dụ: 26.155.20.10).
 4. Cấu hình Code:
   - Mở file client/client_gui.py trên Máy B.
-  - Tìm dòng SERVER_IP = '127.0.0.1' và đổi thành IP vừa copy:
+  - Tìm dòng SERVER_IP = '127.0.0.1' và đổi thành IP vừa copy:  
   SERVER_IP = '26.155.20.10' # Thay bằng IP Radmin của máy Server
 
 ## 🕹 Quy tắc & Cách chơi
 1. Chế độ chơi
-- Solo Mode: Chơi một mình để luyện tập thuật toán.
-- Race Mode: Thi đấu nhiều người. Ai hoàn thành tháp nhanh nhất sẽ thắng. Server tự động thông báo kết quả cho tất cả người chơi.
+  - Solo Mode: Chơi một mình để luyện tập thuật toán.
+  - Race Mode: Thi đấu nhiều người. Ai hoàn thành tháp nhanh nhất sẽ thắng. Server tự động thông báo kết quả cho tất cả người chơi.
 
 2. Tùy chọn độ khó
-- Người chơi được chọn số tầng tháp từ 3 đến 7 tầng.
+  - Người chơi được chọn số tầng tháp từ 3 đến 7 tầng.
 
 3. Thao tác điều khiển
-- Trên GUI: Click chuột vào Cột Nguồn (để nhấc đĩa) -> Click vào Cột Đích (để thả đĩa).
-- Trên Terminal: Nhập tọa độ [Nguồn] [Đích]. Ví dụ: 0 2 (Chuyển từ cột 0 sang cột 2).
+  - Trên GUI: Click chuột vào Cột Nguồn (để nhấc đĩa) -> Click vào Cột Đích (để thả đĩa).
+  - Trên Terminal: Nhập tọa độ [Nguồn] [Đích]. Ví dụ: 0 2 (Chuyển từ cột 0 sang cột 2).
 
 ## 🔧 Khắc phục lỗi thường gặp
 Lỗi: "Address already in use" hoặc không bật được Server
@@ -80,7 +80,6 @@ Lỗi: "Address already in use" hoặc không bật được Server
   - Cách sửa (Windows): Mở Terminal và chạy lệnh:
     ```bash
     netstat -ano | findstr :5555
-    ```bash
     taskkill /F /PID <PID_TIM_DUOC>
     ```
     (Thay <PID_TIM_DUOC> bằng số PID hiện ra ở lệnh trên).
