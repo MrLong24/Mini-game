@@ -12,11 +12,12 @@ Dự án Mini Game giữa kỳ môn Lập trình mạng. Ứng dụng mô hình 
 ## Cấu trúc thư mục
 Mini-game/  
 ├── server/  
-│   └── server.py           # Xử lý kết nối, luồng và trọng tài  
+│   └── server.py           # Xử lý kết nối, luồng và trọng tài
 ├── client/  
-│   └── client.py           # Giao diện người dùng (UI) và nhận input   
+│   ├── client.py           # Giao diện dòng lệnh (Terminal/Console)
+│   └── client_gui.py       # Giao diện đồ họa trực quan (Pygame)
 ├── core/  
-│   └── hanoi_logic.py      # Thuật toán tháp Hà Nội (Dùng chung cho cả 2 bên)  
+│   └── hanoi_logic.py      # Thuật toán tháp Hà Nội (Dùng chung cho cả 2 bên)
 └── README.md               # Hướng dẫn dự án
 
 ## 🛠 Công nghệ sử dụng
@@ -25,28 +26,51 @@ Mini-game/
   - `threading`: Xử lý đa luồng (nhiều người chơi cùng lúc).
   - `json`: Đóng gói dữ liệu trao đổi giữa Client và Server.
 
-## 🕹 Quy tắc trò chơi (Race Mode)
-1. Server khởi tạo một bàn cờ Tháp Hà Nội với số tầng quy định.
-2. Nhiều người chơi có thể kết nối vào Server cùng một lúc.
-3. Khi Server ra lệnh **"START"**, tất cả người chơi bắt đầu giải đố.
-4. Client nào giải xong tháp (di chuyển toàn bộ đĩa sang cột mục tiêu) nhanh nhất sẽ gửi tín hiệu về Server.
-5. Server dừng cuộc chơi và thông báo người chiến thắng cho toàn bộ người tham gia.
+## ⚙️ Cài đặt & Yêu cầu
+Trước khi chạy, hãy đảm bảo máy tính đã cài Python và thư viện đồ họa:
+pip install pygame
 
-## 🚀 Hướng dẫn cài đặt & Chạy
-1. **Khởi động Server:**
-   ```bash
-   python server/server.py
-   ```
-  - Mở 1 terminal mới và gõ lệnh phía dưới để chơi:
-    ```bash
-    python client/client.py
-2. **Cách xử lý khi lỡ tắt terminal mà Server đang chạy:**
-    Cần phải giải phóng Port server đó.
-    - Mở Terminal và gõ lệnh sau để tìm ID của tiến trình:
-    ```bash
+## 🚀 Hướng dẫn Khởi chạy (Localhost)
+Bước 1: Khởi động Server
+Luôn phải chạy Server trước để mở cổng kết nối.
+python server/server.py
+Server sẽ lắng nghe tại cổng 5555.
+
+Bước 2: Khởi động Client (Người chơi)
+Bạn có thể mở nhiều terminal để giả lập nhiều người chơi.
+- Giao diện Đồ họa (GUI): Trải nghiệm kéo thả, chọn tầng.
+  python client/client_gui.py
+- Giao diện Dòng lệnh (Terminal): Dành cho máy cấu hình thấp hoặc debug.
+  python client/client.py
+
+## 🌐 Hướng dẫn chơi Online (2 máy khác nhau)
+Sử dụng Radmin VPN để tạo mạng LAN ảo thi đấu giữa các máy tính khác mạng Wifi.
+1. Cài đặt: Tải Radmin VPN cho cả 2 máy (Máy Server và Máy Client).
+2. Kết nối:
+- Máy A (Server): Bấm Create Network -> Đặt tên & Mật khẩu.
+- Máy B (Client): Bấm Join Network -> Nhập tên & Mật khẩu của Máy A.
+3. Lấy IP: Tại Radmin VPN của Máy A, click chuột phải vào tên máy mình -> Copy IP Address (Ví dụ: 26.155.20.10).
+4. Cấu hình Code:
+- Mở file client/client_gui.py trên Máy B.
+- Tìm dòng SERVER_IP = '127.0.0.1' và đổi thành IP vừa copy:
+  SERVER_IP = '26.155.20.10' # Thay bằng IP Radmin của máy Server
+
+## 🕹 Quy tắc & Cách chơi
+1. Chế độ chơi
+- Solo Mode: Chơi một mình để luyện tập thuật toán.
+- Race Mode: Thi đấu nhiều người. Ai hoàn thành tháp nhanh nhất sẽ thắng. Server tự động thông báo kết quả cho tất cả người chơi.
+
+2. Tùy chọn độ khó
+- Người chơi được chọn số tầng tháp từ 3 đến 7 tầng.
+
+3. Thao tác điều khiển
+- Trên GUI: Click chuột vào Cột Nguồn (để nhấc đĩa) -> Click vào Cột Đích (để thả đĩa).
+- Trên Terminal: Nhập tọa độ [Nguồn] [Đích]. Ví dụ: 0 2 (Chuyển từ cột 0 sang cột 2).
+
+## 🔧 Khắc phục lỗi thường gặp
+Lỗi: "Address already in use" hoặc không bật được Server
+  - Nguyên nhân: Cổng 5555 chưa được giải phóng do lần chạy trước tắt không đúng cách.
+  - Cách sửa (Windows): Mở Terminal và chạy lệnh:
     netstat -ano | findstr :5555
-    ```
-    - Kết quả sẽ hiện ra một dòng có số ở cuối (ví dụ: 1234). Đó là **PID**.
-    - Gõ lệnh sau để tắt nó (thay 1234 bằng số PID bạn thấy):
-    ```bash
-    taskkill /F /PID 1234
+    taskkill /F /PID <PID_TIM_DUOC>
+    (Thay <PID_TIM_DUOC> bằng số PID hiện ra ở lệnh trên).
