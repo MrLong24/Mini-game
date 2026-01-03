@@ -12,13 +12,13 @@ Dự án Mini Game giữa kỳ môn Lập trình mạng. Ứng dụng mô hình 
 ## Cấu trúc thư mục
 Mini-game/  
 ├── server/  
-│   └── server.py           # Xử lý kết nối, luồng và trọng tài  
+│   └── server.py           # Xử lý kết nối, luồng và trọng tải  
 ├── client/  
 │   ├── client.py           # Giao diện dòng lệnh (Terminal/Console)  
 │   └── client_gui.py       # Giao diện đồ họa trực quan (Pygame)  
 ├── core/  
-│   └── hanoi_logic.py      # Thuật toán tháp Hà Nội (Dùng chung cho cả 2 bên)  
-└── README.md               # Hướng dẫn dự án
+│   └── hanoi_logic.py        
+└── README.md               
 
 ## 🛠 Công nghệ sử dụng
 - **Ngôn ngữ:** Python 3.x
